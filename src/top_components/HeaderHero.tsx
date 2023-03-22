@@ -247,7 +247,8 @@ const HeroBanner: any = styled('div')({
 
   '@media (max-width: 870px)': {
    flexDirection:"column-reverse",
-   padding:"0px"
+   padding:"0px",
+   width:"100%" //changes
   },
 })
 
@@ -263,6 +264,7 @@ const HeroBannerContent: any = styled('div')({
   margin: `0px`,
   '@media (max-width: 870px)': {
     alignItems: `center`,
+    width:"100%" // changes
    },
 })
 
@@ -341,7 +343,7 @@ const HeroBannerButtons: any = styled('div')({
     alignItems:"center",
     margin: `32px 0px 0px 0px`,
     maxWidth:"500px",
-    width:"100vw",
+    width:"100%", //=================== changes
     padding:"0px 20px"
    },
 })

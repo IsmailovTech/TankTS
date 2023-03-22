@@ -28,7 +28,7 @@ const PricingContent: any = styled('div')({
   flexDirection: `column`,
   justifyContent: `center`,
   alignItems: `center`,
-  padding: `8px`,
+  padding: `8px 0px`, // change to this
   boxSizing: `border-box`,
   marginTop:"92px",
   
@@ -59,11 +59,10 @@ const PricingCards: any = styled('div')({
   alignItems: `flex-start`,
   boxSizing: `border-box`,
   maxWidth:"1110px",
-  width:"100vw",
+  width:"100%",   // change to this
   flexWrap:"wrap",
   padding:"0px 10px",
-  gap: "20px"
-  
+  gap: "20px",
 });
 
 const FreeTrial: any = styled('div')(({ theme }: any) => ({
