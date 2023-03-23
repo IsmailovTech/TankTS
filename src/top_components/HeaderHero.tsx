@@ -122,38 +122,6 @@ const HeaveHo: any = styled('div')(({ theme }: any) => ({
   },
 }))
 
-// const HeaderButtons: any = styled('div')({
-//   display: `flex`,
-//   position: `relative`,
-//   isolation: `isolate`,
-//   flexDirection: `row`,
-//   justifyContent: `center`,
-//   gap: '30px',
-//   alignItems: `center`,
-//   padding: `0px`,
-//   zIndex:1,
-//   boxSizing: `border-box`,
-//   '@media (max-width: 900px)': {
-//     gap: '15px',
-//   },
-//   '@media (max-width: 870px)': {
-//     position:"fixed",
-//     left: `${state ? '0px' : '-100%'}`,
-//     top: `${state ? '0px' : '-100%'}`,
-//     display:"none",
-//     alignItems:"flex-start",
-//     paddingLeft:"32%",
-//     gap:"40px",
-//     width:"100%",
-//     height:"100vh",
-//     backgroundColor:"#C2E6FE",
-//     flexDirection:"column",
-//     zIndex: 1,
-//   },
-//   '& body': {
-//     overflow: 'hidden',
-//   },
-// })
 
 const ButtonHamburger: any = styled(Button)(({ theme }: any) => ({
   display: 'none',
