@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../App'
 import FooterBg01011Image from '../assets/footer_bg-01.png'
 import IconFacebookImage from '../assets/footer_icon_facebook.svg'
 import IconTwitterImage from '../assets/footer_icon_twitter.svg'
@@ -22,11 +23,11 @@ const Footer1: any = styled('div')({
   bottom: `0`,
   boxSizing: `border-box`,
   '@media (max-width: 870px)': {
-    justifyContent:"center"
+    justifyContent: 'center',
   },
 })
 
-const FooterBg: any = styled('div')({
+const FooterBg: any = styled('div')(({ is_dark_theme }: any) => ({
   display: `flex`,
   position: `absolute`,
   isolation: `isolate`,
@@ -35,13 +36,14 @@ const FooterBg: any = styled('div')({
   alignItems: `center`,
   padding: `0px`,
   boxSizing: `border-box`,
-  width: "100%",
+  width: '100%',
   height: `720px`,
   left: `0px`,
+  filter: is_dark_theme ? `brightness(0.5)` : `none`,
   '@media (max-width: 550px)': {
-    display:"none"
+    display: 'none',
   },
-})
+}))
 
 const FooterBg01011: any = styled('img')({
   height: `720px`,
@@ -50,7 +52,7 @@ const FooterBg01011: any = styled('img')({
   margin: `0px`,
 })
 
-const Footer2: any = styled('div')({
+const Footer2: any = styled('div')(({ is_dark_theme }: any) => ({
   display: `flex`,
   isolation: `isolate`,
   flexDirection: `column`,
@@ -59,15 +61,17 @@ const Footer2: any = styled('div')({
   padding: `32px`,
   boxSizing: `border-box`,
   width: `100%`,
-  marginTop:"132px"  ,
+  marginTop: '132px',
   '@media (max-width: 870px)': {
-    marginTop:"0px",
+    marginTop: '0px',
   },
 
   '@media (max-width: 550px)': {
-    backgroundColor:"#00568D"
+    backgroundColor: is_dark_theme ? `#00345C` : `
+    #00568D`,
   },
-})
+}));
+
 
 const FooterContent001: any = styled('div')({
   display: `flex`,
@@ -75,8 +79,8 @@ const FooterContent001: any = styled('div')({
   isolation: `isolate`,
   flexDirection: `row`,
   justifyContent: `space-between`,
-  maxWidth:"1176px",
-  width:"100%",
+  maxWidth: '1176px',
+  width: '100%',
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
@@ -100,7 +104,7 @@ const HeaveHo: any = styled('div')(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `24px`,
   textTransform: `uppercase`,
-  minWidth:"299px",
+  minWidth: '299px',
   margin: `0px`,
 }))
 
@@ -110,59 +114,64 @@ const Frame6: any = styled('div')({
   isolation: `isolate`,
   flexDirection: `row`,
   justifyContent: `space-between`,
-  flexWrap:"nowrap",
-  maxWidth:"717px",
-  width:"100%",
+  flexWrap: 'nowrap',
+  maxWidth: '717px',
+  width: '100%',
   alignItems: `flex-start`,
-  margin:"0px 0px 0px 20px",
+  margin: '0px 0px 0px 20px',
   padding: `0px`,
   boxSizing: `border-box`,
   '@media (max-width: 870px)': {
-    marginTop:"58px",
+    marginTop: '58px',
   },
   '@media (max-width: 550px)': {
-    flexWrap:"wrap",
-    maxWidth:"250px",
-    margin:"58px 0px 0px 28px"
-
+    flexWrap: 'wrap',
+    maxWidth: '250px',
+    margin: '58px 0px 0px 28px',
   },
 })
 
-const PegaraTeamHistoryConSpan1: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `700`,
-  fontSize: `18px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const PegaraTeamHistoryConSpan1: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `700`,
+    fontSize: `18px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
-const PegaraTeamHistoryConSpan2: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `400`,
-  fontSize: `15px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const PegaraTeamHistoryConSpan2: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `400`,
+    fontSize: `15px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
-const PegaraTeamHistoryConSpan3: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `700`,
-  fontSize: `18px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const PegaraTeamHistoryConSpan3: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `700`,
+    fontSize: `18px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
 const PegaraTeamHistoryCon: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -179,41 +188,47 @@ const PegaraTeamHistoryCon: any = styled('div')(({ theme }: any) => ({
   margin: `0px`,
 }))
 
-const FeaturesCoolStuffRanSpan1: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `700`,
-  fontSize: `18px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const FeaturesCoolStuffRanSpan1: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `700`,
+    fontSize: `18px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
-const FeaturesCoolStuffRanSpan2: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `400`,
-  fontSize: `18px`,
-  letterSpacing: `0px`,
-  textDecoration: `underline`,
-  textTransform: `none`,
-}))
+const FeaturesCoolStuffRanSpan2: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `400`,
+    fontSize: `18px`,
+    letterSpacing: `0px`,
+    textDecoration: `underline`,
+    textTransform: `none`,
+  }),
+)
 
-const FeaturesCoolStuffRanSpan3: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `400`,
-  fontSize: `15px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const FeaturesCoolStuffRanSpan3: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `400`,
+    fontSize: `15px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
 const FeaturesCoolStuffRan: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -227,33 +242,35 @@ const FeaturesCoolStuffRan: any = styled('div')(({ theme }: any) => ({
   letterSpacing: `NaNpx`,
   textDecoration: `none`,
   textTransform: `none`,
- 
 }))
 
-const ResourcesResourceResSpan1: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `700`,
-  fontSize: `18px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-  
-}))
+const ResourcesResourceResSpan1: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `700`,
+    fontSize: `18px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
-const ResourcesResourceResSpan2: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `400`,
-  fontSize: `15px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const ResourcesResourceResSpan2: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `400`,
+    fontSize: `15px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
 const ResourcesResourceRes: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -268,33 +285,37 @@ const ResourcesResourceRes: any = styled('div')(({ theme }: any) => ({
   textDecoration: `none`,
   textTransform: `none`,
   '@media (max-width: 550px)': {
-    marginTop:"20px"
+    marginTop: '20px',
   },
 }))
 
-const LegalPrivacyPolicyTeSpan1: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `700`,
-  fontSize: `18px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const LegalPrivacyPolicyTeSpan1: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `700`,
+    fontSize: `18px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
-const LegalPrivacyPolicyTeSpan2: any = styled('span')(({ theme }: any) => ({
-  whiteSpace: `pre-wrap`,
-  color: `rgba(255, 255, 255, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Roboto`,
-  fontWeight: `400`,
-  fontSize: `15px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  textTransform: `none`,
-}))
+const LegalPrivacyPolicyTeSpan2: any = styled('span')(
+  ({ is_dark_theme }: any) => ({
+    whiteSpace: `pre-wrap`,
+    color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
+    fontStyle: `normal`,
+    fontFamily: `Roboto`,
+    fontWeight: `400`,
+    fontSize: `15px`,
+    letterSpacing: `0px`,
+    textDecoration: `none`,
+    textTransform: `none`,
+  }),
+)
 
 const LegalPrivacyPolicyTe: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -309,7 +330,7 @@ const LegalPrivacyPolicyTe: any = styled('div')(({ theme }: any) => ({
   textDecoration: `none`,
   textTransform: `none`,
   '@media (max-width: 550px)': {
-    marginTop:"20px"
+    marginTop: '20px',
   },
 }))
 
@@ -317,7 +338,7 @@ const LineSeparator1: any = styled('div')({
   border: `1px solid rgba(227, 244, 254, 1)`,
   height: `0px`,
   maxWidth: `1176px`,
-  width:"100%",
+  width: '100%',
   margin: `30px 0px 0px 0px`,
 })
 
@@ -327,14 +348,14 @@ const Frame7: any = styled('div')({
   isolation: `isolate`,
   flexDirection: `row`,
   justifyContent: `space-between`,
-  maxWidth:"1080px",
-  width:"100%",
+  maxWidth: '1080px',
+  width: '100%',
   alignItems: `center`,
   padding: `0px`,
   boxSizing: `border-box`,
   margin: `30px 0px 0px 0px`,
   '@media (max-width: 700px)': {
-    flexDirection:"column",
+    flexDirection: 'column',
     alignItems: `flex-start`,
   },
 })
@@ -349,10 +370,10 @@ const Contacts: any = styled('div')({
   padding: `0px`,
   boxSizing: `border-box`,
   maxWidth: `479px`,
-  width:"100%",
+  width: '100%',
   margin: `0px`,
   '@media (max-width: 550px)': {
-    flexDirection:"column",
+    flexDirection: 'column',
     alignItems: `flex-start`,
   },
 })
@@ -368,13 +389,13 @@ const TitlePhoneEmail: any = styled('div')({
   boxSizing: `border-box`,
 })
 
-const Title: any = styled('div')(({ theme }: any) => ({
+const Title: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `16px`,
   letterSpacing: `-0.24px`,
@@ -396,13 +417,13 @@ const PhoneEmail: any = styled('div')({
   margin: `15px 0px 0px 0px`,
 })
 
-const Phone: any = styled('div')(({ theme }: any) => ({
+const Phone: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -424,13 +445,13 @@ const EmailLink: any = styled('div')({
   margin: `10px 0px 0px 0px`,
 })
 
-const Title1: any = styled('div')(({ theme }: any) => ({
+const Title1: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `600`,
   fontSize: `14px`,
   letterSpacing: `-0.14px`,
@@ -450,17 +471,17 @@ const AddressLink: any = styled('div')({
   padding: `0px`,
   boxSizing: `border-box`,
   '@media (max-width: 550px)': {
-    marginTop:"15px"
+    marginTop: '15px',
   },
 })
 
-const Address: any = styled('div')(({ theme }: any) => ({
+const Address: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -482,13 +503,13 @@ const DriveDerectionsLink: any = styled('div')({
   margin: `10px 0px 0px 0px`,
 })
 
-const Title2: any = styled('div')(({ theme }: any) => ({
+const Title2: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `600`,
   fontSize: `14px`,
   letterSpacing: `-0.14px`,
@@ -507,22 +528,22 @@ const SocialLinks: any = styled('div')({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-  marginLeft:"20px",
+  marginLeft: '20px',
   '@media (max-width: 700px)': {
-    marginLeft:"0px",
+    marginLeft: '0px',
   },
   '@media (max-width: 550px)': {
-    marginTop:"48px"
+    marginTop: '48px',
   },
 })
 
-const Title3: any = styled('div')(({ theme }: any) => ({
+const Title3: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `16px`,
   letterSpacing: `-0.24px`,
@@ -581,54 +602,68 @@ const IconBehance: any = styled('img')({
 })
 
 function Footer(props: FooterProps): JSX.Element {
+  const { lang, setLang, is_dark_theme, is_logged_in, setLogin } = useContext(
+    AppContext,
+  )
   return (
     <Footer1 className={props.className}>
-      <FooterBg>
+      <FooterBg is_dark_theme={is_dark_theme}>
         <FooterBg01011
           src={FooterBg01011Image}
           loading="lazy"
           alt={'footer_bg-01-01 1'}
         />
       </FooterBg>
-      <Footer2>
+      <Footer2 is_dark_theme={is_dark_theme}>
         <FooterContent001>
-          <HeaveHo>{`( 'ω' و( و'♪ ₍₍ (ง ˘ω˘ )ว ⁾⁾Heave‐ho`}</HeaveHo>
           <Frame6>
             <PegaraTeamHistoryCon>
-              <PegaraTeamHistoryConSpan1>{`Pegara
+              <PegaraTeamHistoryConSpan1 is_dark_theme={is_dark_theme}>{`Pegara
   
 `}</PegaraTeamHistoryConSpan1>
-              <PegaraTeamHistoryConSpan2>{`Team
+              <PegaraTeamHistoryConSpan2 is_dark_theme={is_dark_theme}>{`Team
 History
 Contact us
 Locations`}</PegaraTeamHistoryConSpan2>
-              <PegaraTeamHistoryConSpan3>{` `}</PegaraTeamHistoryConSpan3>
+              <PegaraTeamHistoryConSpan3
+                is_dark_theme={is_dark_theme}
+              >{` `}</PegaraTeamHistoryConSpan3>
             </PegaraTeamHistoryCon>
             <FeaturesCoolStuffRan>
-              <FeaturesCoolStuffRanSpan1>{`Features
+              <FeaturesCoolStuffRanSpan1
+                is_dark_theme={is_dark_theme}
+              >{`Features
 `}</FeaturesCoolStuffRanSpan1>
               <FeaturesCoolStuffRanSpan2>{`
 `}</FeaturesCoolStuffRanSpan2>
-              <FeaturesCoolStuffRanSpan3>{`Cool stuff
+              <FeaturesCoolStuffRanSpan3
+                is_dark_theme={is_dark_theme}
+              >{`Cool stuff
 Random feature
 Team feature
 Developer stuff
 Another one`}</FeaturesCoolStuffRanSpan3>
             </FeaturesCoolStuffRan>
             <ResourcesResourceRes>
-              <ResourcesResourceResSpan1>{`Resources
+              <ResourcesResourceResSpan1
+                is_dark_theme={is_dark_theme}
+              >{`Resources
   
 `}</ResourcesResourceResSpan1>
-              <ResourcesResourceResSpan2>{`Resource
+              <ResourcesResourceResSpan2
+                is_dark_theme={is_dark_theme}
+              >{`Resource
 Resource name
 Another resource
 Final resource`}</ResourcesResourceResSpan2>
             </ResourcesResourceRes>
             <LegalPrivacyPolicyTe>
-              <LegalPrivacyPolicyTeSpan1>{`Legal
+              <LegalPrivacyPolicyTeSpan1 is_dark_theme={is_dark_theme}>{`Legal
   
 `}</LegalPrivacyPolicyTeSpan1>
-              <LegalPrivacyPolicyTeSpan2>{`Privacy policy
+              <LegalPrivacyPolicyTeSpan2
+                is_dark_theme={is_dark_theme}
+              >{`Privacy policy
 Terms of use `}</LegalPrivacyPolicyTeSpan2>
             </LegalPrivacyPolicyTe>
           </Frame6>
@@ -637,23 +672,29 @@ Terms of use `}</LegalPrivacyPolicyTeSpan2>
         <Frame7>
           <Contacts>
             <TitlePhoneEmail>
-              <Title>{`Contacts`}</Title>
+              <Title is_dark_theme={is_dark_theme}>{`Contacts`}</Title>
               <PhoneEmail>
-                <Phone>{`+1 601-201-5580`}</Phone>
+                <Phone is_dark_theme={is_dark_theme}>{`+1 601-201-5580`}</Phone>
                 <EmailLink>
-                  <Title1>{`pegara@info.co.jp`}</Title1>
+                  <Title1
+                    is_dark_theme={is_dark_theme}
+                  >{`pegara@info.co.jp`}</Title1>
                 </EmailLink>
               </PhoneEmail>
             </TitlePhoneEmail>
             <AddressLink>
-              <Address>{`1642 Washington Avenue, Jackson, MS, 39201`}</Address>
+              <Address
+                is_dark_theme={is_dark_theme}
+              >{`1642 Washington Avenue, Jackson, MS, 39201`}</Address>
               <DriveDerectionsLink>
-                <Title2>{`Driving derections`}</Title2>
+                <Title2
+                  is_dark_theme={is_dark_theme}
+                >{`Driving derections`}</Title2>
               </DriveDerectionsLink>
             </AddressLink>
           </Contacts>
           <SocialLinks>
-            <Title3>{`Social`}</Title3>
+            <Title3 is_dark_theme={is_dark_theme}>{`Social`}</Title3>
             <IconsSocialLinks>
               <IconFacebook
                 src={IconFacebookImage}

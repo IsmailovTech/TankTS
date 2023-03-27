@@ -1,26 +1,27 @@
+import { Button } from '@mui/material'
+import VectorImage from '../assets/pricing_Vector.png'
+import Vector2Image from '../assets/pricing_Vector_2.png'
+import Vector3Image from '../assets/pricing_Vector_3.svg'
+import Vector33Image from '../assets/pricing_Vector_33.svg'
+import { styled } from '@mui/material/styles'
+import { PricingProps } from '../assets/types'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../App'
 
-import React from 'react';
-import { Button } from '@mui/material';
-import VectorImage from '../assets/pricing_Vector.png';
-import Vector2Image from '../assets/pricing_Vector_2.png';
-import Vector3Image from '../assets/pricing_Vector_3.png';
-import { styled } from '@mui/material/styles';
-import { PricingProps } from '../assets/types';
-
-const Pricing1: any = styled('div')({
+const Pricing1: any = styled('div')(({ is_dark_theme }: any) => ({
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
-  flexDirection: `row`,
+  flexDirection: `column`,
   width: '100%',
   height: '100%',
   justifyContent: `center`,
   alignItems: `flex-center`,
-  padding: `0px`,
   boxSizing: `border-box`,
-  backgroundColor:"#f7fafc",
-});
-
+  backgroundColor: is_dark_theme
+    ? `#232323`
+    : `rgba(247, 250, 252, 1)`,
+}))
 
 const PricingContent: any = styled('div')({
   display: `flex`,
@@ -28,19 +29,19 @@ const PricingContent: any = styled('div')({
   flexDirection: `column`,
   justifyContent: `center`,
   alignItems: `center`,
-  padding: `8px 0px`, // change to this
+  padding: `8px 0px`,
   boxSizing: `border-box`,
-  marginTop:"92px",
-  
-});
+  marginTop: '80px',
+  marginBottom: '10px',
+})
 
-const H2Title: any = styled('div')(({ theme }: any) => ({
+const H2Title: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `800`,
   fontSize: `38px`,
   letterSpacing: `-0.57px`,
@@ -48,7 +49,7 @@ const H2Title: any = styled('div')(({ theme }: any) => ({
   lineHeight: `56px`,
   textTransform: `none`,
   margin: `0px 0px 50px 0px `,
-}));
+}))
 
 const PricingCards: any = styled('div')({
   display: `flex`,
@@ -58,15 +59,15 @@ const PricingCards: any = styled('div')({
   justifyContent: `center`,
   alignItems: `flex-start`,
   boxSizing: `border-box`,
-  maxWidth:"1110px",
-  width:"100%",   // change to this
-  flexWrap:"wrap",
-  padding:"0px 10px",
-  gap: "20px",
-});
+  maxWidth: '100%',
+  flexWrap: 'wrap',
+  gap: '20px',
+})
 
-const FreeTrial: any = styled('div')(({ theme }: any) => ({
-  backgroundColor: `rgba(255, 255, 255, 1)`,
+const FreeTrial: any = styled('div')(({ is_dark_theme }: any) => ({
+  backgroundColor: is_dark_theme
+    ? `rgba(0, 52, 92, 1)`
+    : `rgba(255, 255, 255, 1)`,
   boxShadow: `0px 4px 12px rgba(12, 68, 204, 0.1)`,
   borderRadius: `6px`,
   display: `flex`,
@@ -80,7 +81,7 @@ const FreeTrial: any = styled('div')(({ theme }: any) => ({
   width: `255px`,
   height: `525px`,
   margin: `0px 0px 30px 0px`,
-}));
+}))
 
 const TitlePrice: any = styled('div')({
   display: `flex`,
@@ -93,15 +94,15 @@ const TitlePrice: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
-const Title: any = styled('div')(({ theme }: any) => ({
+const Title: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `16px`,
   letterSpacing: `-0.24px`,
@@ -110,7 +111,7 @@ const Title: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   alignSelf: `stretch`,
   margin: `0px`,
-}));
+}))
 
 const PriceTaps: any = styled('div')({
   display: `flex`,
@@ -123,15 +124,15 @@ const PriceTaps: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `16px 0px 0px 0px`,
-});
+})
 
-const Price: any = styled('div')(({ theme }: any) => ({
+const Price: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `800`,
   fontSize: `26px`,
   letterSpacing: `-0.39px`,
@@ -139,7 +140,7 @@ const Price: any = styled('div')(({ theme }: any) => ({
   lineHeight: `40px`,
   textTransform: `none`,
   width: `123px`,
-}));
+}))
 
 const Taps: any = styled('div')({
   display: `flex`,
@@ -150,7 +151,7 @@ const Taps: any = styled('div')({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-});
+})
 
 const Button1: any = styled(Button)(({ theme }: any) => ({
   width: `41px`,
@@ -165,14 +166,17 @@ const Button1: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  backgroundColor:"#0097E6"
-}));
+  backgroundColor: '#407BFF',
+}))
 
-const Button2: any = styled(Button)(({ theme }: any) => ({
+const Button2: any = styled(Button)(({ is_dark_theme }: any) => ({
   width: `41px`,
   height: `32px`,
   margin: `0px 0px 0px 10px`,
-  color: `rgba(33, 150, 243, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(33, 150, 243, 1)`,
+  outlineColor: is_dark_theme
+    ? `rgba(228, 245, 255, 1)`
+    : `rgba(33, 150, 243, 1)`,
   fontStyle: `normal`,
   fontFamily: `Roboto`,
   fontWeight: `500`,
@@ -181,8 +185,7 @@ const Button2: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  
-}));
+}))
 
 const Description: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -190,7 +193,7 @@ const Description: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `20px`,
   letterSpacing: `-0.3px`,
@@ -200,7 +203,7 @@ const Description: any = styled('div')(({ theme }: any) => ({
   alignSelf: `stretch`,
   height: `33px`,
   margin: `16px 0px 0px 0px`,
-}));
+}))
 
 const Button3: any = styled(Button)(({ theme }: any) => ({
   height: `44px`,
@@ -215,8 +218,8 @@ const Button3: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  backgroundColor:"#0097E6"
-}));
+  backgroundColor: '#407BFF',
+}))
 
 const Services: any = styled('div')({
   display: `flex`,
@@ -229,7 +232,7 @@ const Services: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `30px 0px 0px 0px`,
-});
+})
 
 const Q01Service: any = styled('div')({
   display: `flex`,
@@ -242,7 +245,7 @@ const Q01Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
 const FluentCheckmark12Fil: any = styled('div')({
   display: `flex`,
@@ -257,7 +260,7 @@ const FluentCheckmark12Fil: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector: any = styled('img')({
   height: `12px`,
@@ -265,15 +268,15 @@ const Vector: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description1: any = styled('div')(({ theme }: any) => ({
+const Description1: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -282,7 +285,7 @@ const Description1: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q02Service: any = styled('div')({
   display: `flex`,
@@ -295,7 +298,7 @@ const Q02Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil1: any = styled('div')({
   display: `flex`,
@@ -310,7 +313,7 @@ const FluentCheckmark12Fil1: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector1: any = styled('img')({
   height: `12px`,
@@ -318,15 +321,15 @@ const Vector1: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description2: any = styled('div')(({ theme }: any) => ({
+const Description2: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -335,7 +338,7 @@ const Description2: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q03Service: any = styled('div')({
   display: `flex`,
@@ -348,7 +351,7 @@ const Q03Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil2: any = styled('div')({
   display: `flex`,
@@ -363,7 +366,7 @@ const FluentCheckmark12Fil2: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector2: any = styled('img')({
   height: `12px`,
@@ -371,7 +374,7 @@ const Vector2: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description3: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -379,7 +382,7 @@ const Description3: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -388,7 +391,7 @@ const Description3: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q04Service: any = styled('div')({
   display: `flex`,
@@ -401,7 +404,7 @@ const Q04Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil3: any = styled('div')({
   display: `flex`,
@@ -416,7 +419,7 @@ const FluentCheckmark12Fil3: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector3: any = styled('img')({
   height: `12px`,
@@ -424,7 +427,7 @@ const Vector3: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description4: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -432,7 +435,7 @@ const Description4: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -441,7 +444,7 @@ const Description4: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q05Service: any = styled('div')({
   display: `flex`,
@@ -454,7 +457,7 @@ const Q05Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil4: any = styled('div')({
   display: `flex`,
@@ -469,7 +472,7 @@ const FluentCheckmark12Fil4: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector4: any = styled('img')({
   height: `12px`,
@@ -477,7 +480,7 @@ const Vector4: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description5: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -485,7 +488,7 @@ const Description5: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -494,7 +497,7 @@ const Description5: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q06Service: any = styled('div')({
   display: `flex`,
@@ -507,7 +510,7 @@ const Q06Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil5: any = styled('div')({
   display: `flex`,
@@ -522,7 +525,7 @@ const FluentCheckmark12Fil5: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector5: any = styled('img')({
   height: `12px`,
@@ -530,7 +533,7 @@ const Vector5: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description6: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -538,7 +541,7 @@ const Description6: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -547,7 +550,7 @@ const Description6: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q07Service: any = styled('div')({
   display: `flex`,
@@ -560,7 +563,7 @@ const Q07Service: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil6: any = styled('div')({
   display: `flex`,
@@ -575,7 +578,7 @@ const FluentCheckmark12Fil6: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector6: any = styled('img')({
   height: `12px`,
@@ -583,7 +586,7 @@ const Vector6: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description7: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -591,7 +594,7 @@ const Description7: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -600,10 +603,12 @@ const Description7: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
-const Lite: any = styled('div')(({ theme }: any) => ({
-  backgroundColor: `rgba(255, 255, 255, 1)`,
+const Lite: any = styled('div')(({ is_dark_theme }: any) => ({
+  backgroundColor: is_dark_theme
+    ? `rgba(0, 52, 92, 1)`
+    : `rgba(255, 255, 255, 1)`,
   boxShadow: `0px 4px 12px rgba(12, 68, 204, 0.1)`,
   borderRadius: `6px`,
   display: `flex`,
@@ -617,7 +622,7 @@ const Lite: any = styled('div')(({ theme }: any) => ({
   boxSizing: `border-box`,
   width: `255px`,
   height: `525px`,
-}));
+}))
 
 const TitlePrice1: any = styled('div')({
   display: `flex`,
@@ -630,15 +635,15 @@ const TitlePrice1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
-const Title1: any = styled('div')(({ theme }: any) => ({
+const Title1: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `16px`,
   letterSpacing: `-0.24px`,
@@ -647,7 +652,7 @@ const Title1: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   alignSelf: `stretch`,
   margin: `0px`,
-}));
+}))
 
 const PriceTaps1: any = styled('div')({
   display: `flex`,
@@ -660,15 +665,15 @@ const PriceTaps1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `16px 0px 0px 0px`,
-});
+})
 
-const Price1: any = styled('div')(({ theme }: any) => ({
+const Price1: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `800`,
   fontSize: `26px`,
   letterSpacing: `-0.39px`,
@@ -676,7 +681,7 @@ const Price1: any = styled('div')(({ theme }: any) => ({
   lineHeight: `40px`,
   textTransform: `none`,
   width: `123px`,
-}));
+}))
 
 const Taps1: any = styled('div')({
   display: `flex`,
@@ -687,7 +692,7 @@ const Taps1: any = styled('div')({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-});
+})
 
 const Button4: any = styled(Button)(({ theme }: any) => ({
   width: `41px`,
@@ -702,14 +707,14 @@ const Button4: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  backgroundColor:"#0097E6"
-}));
+  backgroundColor: '#407BFF',
+}))
 
-const Button5: any = styled(Button)(({ theme }: any) => ({
+const Button5: any = styled(Button)(({ is_dark_theme }: any) => ({
   width: `41px`,
   height: `32px`,
   margin: `0px 0px 0px 10px`,
-  color: `rgba(33, 150, 243, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(33, 150, 243, 1)`,
   fontStyle: `normal`,
   fontFamily: `Roboto`,
   fontWeight: `500`,
@@ -718,8 +723,7 @@ const Button5: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  
-}));
+}))
 
 const Description8: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -727,7 +731,7 @@ const Description8: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `20px`,
   letterSpacing: `-0.3px`,
@@ -737,7 +741,7 @@ const Description8: any = styled('div')(({ theme }: any) => ({
   alignSelf: `stretch`,
   height: `33px`,
   margin: `16px 0px 0px 0px`,
-}));
+}))
 
 const Button6: any = styled(Button)(({ theme }: any) => ({
   height: `44px`,
@@ -752,8 +756,8 @@ const Button6: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  backgroundColor:"#0097E6"
-}));
+  backgroundColor: '#407BFF',
+}))
 
 const Services1: any = styled('div')({
   display: `flex`,
@@ -766,7 +770,7 @@ const Services1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `30px 0px 0px 0px`,
-});
+})
 
 const Q01Service1: any = styled('div')({
   display: `flex`,
@@ -779,7 +783,7 @@ const Q01Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
 const FluentCheckmark12Fil7: any = styled('div')({
   display: `flex`,
@@ -794,7 +798,7 @@ const FluentCheckmark12Fil7: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector7: any = styled('img')({
   height: `12px`,
@@ -802,15 +806,15 @@ const Vector7: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description9: any = styled('div')(({ theme }: any) => ({
+const Description9: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -819,7 +823,7 @@ const Description9: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q02Service1: any = styled('div')({
   display: `flex`,
@@ -832,7 +836,7 @@ const Q02Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil8: any = styled('div')({
   display: `flex`,
@@ -847,7 +851,7 @@ const FluentCheckmark12Fil8: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector8: any = styled('img')({
   height: `12px`,
@@ -855,15 +859,15 @@ const Vector8: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description10: any = styled('div')(({ theme }: any) => ({
+const Description10: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -872,7 +876,7 @@ const Description10: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q03Service1: any = styled('div')({
   display: `flex`,
@@ -885,7 +889,7 @@ const Q03Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil9: any = styled('div')({
   display: `flex`,
@@ -900,7 +904,7 @@ const FluentCheckmark12Fil9: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector9: any = styled('img')({
   height: `12px`,
@@ -908,15 +912,15 @@ const Vector9: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description11: any = styled('div')(({ theme }: any) => ({
+const Description11: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -925,7 +929,7 @@ const Description11: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q04Service1: any = styled('div')({
   display: `flex`,
@@ -938,7 +942,7 @@ const Q04Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil10: any = styled('div')({
   display: `flex`,
@@ -953,7 +957,7 @@ const FluentCheckmark12Fil10: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector10: any = styled('img')({
   height: `12px`,
@@ -961,7 +965,7 @@ const Vector10: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description12: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -969,7 +973,7 @@ const Description12: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -978,7 +982,7 @@ const Description12: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q05Service1: any = styled('div')({
   display: `flex`,
@@ -991,7 +995,7 @@ const Q05Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil11: any = styled('div')({
   display: `flex`,
@@ -1006,7 +1010,7 @@ const FluentCheckmark12Fil11: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector11: any = styled('img')({
   height: `12px`,
@@ -1014,7 +1018,7 @@ const Vector11: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description13: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1022,7 +1026,7 @@ const Description13: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1031,7 +1035,7 @@ const Description13: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q06Service1: any = styled('div')({
   display: `flex`,
@@ -1044,7 +1048,7 @@ const Q06Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil12: any = styled('div')({
   display: `flex`,
@@ -1059,7 +1063,7 @@ const FluentCheckmark12Fil12: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector12: any = styled('img')({
   height: `12px`,
@@ -1067,7 +1071,7 @@ const Vector12: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description14: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1075,7 +1079,7 @@ const Description14: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1084,7 +1088,7 @@ const Description14: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q07Service1: any = styled('div')({
   display: `flex`,
@@ -1097,7 +1101,7 @@ const Q07Service1: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil13: any = styled('div')({
   display: `flex`,
@@ -1112,7 +1116,7 @@ const FluentCheckmark12Fil13: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector13: any = styled('img')({
   height: `12px`,
@@ -1120,7 +1124,7 @@ const Vector13: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description15: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1128,7 +1132,7 @@ const Description15: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1137,10 +1141,12 @@ const Description15: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
-const Basic: any = styled('div')(({ theme }: any) => ({
-  backgroundColor: `rgba(0, 151, 230, 1)`,
+const Basic: any = styled('div')(({ is_dark_theme }: any) => ({
+  backgroundColor: is_dark_theme
+    ? `rgba(228, 245, 255, 1 )`
+    : `rgba(64, 123, 255, 1)`,
   boxShadow: `0px 4px 12px rgba(12, 68, 204, 0.1)`,
   borderRadius: `6px`,
   display: `flex`,
@@ -1154,7 +1160,7 @@ const Basic: any = styled('div')(({ theme }: any) => ({
   boxSizing: `border-box`,
   width: `255px`,
   height: `525px`,
-}));
+}))
 
 const TitlePrice2: any = styled('div')({
   display: `flex`,
@@ -1167,15 +1173,15 @@ const TitlePrice2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
-const Title2: any = styled('div')(({ theme }: any) => ({
+const Title2: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `16px`,
   letterSpacing: `-0.24px`,
@@ -1184,7 +1190,7 @@ const Title2: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   alignSelf: `stretch`,
   margin: `0px`,
-}));
+}))
 
 const PriceTaps2: any = styled('div')({
   display: `flex`,
@@ -1197,15 +1203,15 @@ const PriceTaps2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `16px 0px 0px 0px`,
-});
+})
 
-const Price2: any = styled('div')(({ theme }: any) => ({
+const Price2: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `800`,
   fontSize: `26px`,
   letterSpacing: `-0.39px`,
@@ -1213,7 +1219,7 @@ const Price2: any = styled('div')(({ theme }: any) => ({
   lineHeight: `40px`,
   textTransform: `none`,
   width: `123px`,
-}));
+}))
 
 const Taps2: any = styled('div')({
   display: `flex`,
@@ -1224,13 +1230,14 @@ const Taps2: any = styled('div')({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-});
+})
 
-const Button7: any = styled(Button)(({ theme }: any) => ({
+const Button7: any = styled(Button)(({ is_dark_theme }: any) => ({
   width: `41px`,
   height: `32px`,
   margin: `0px`,
-  color: `rgba(33, 150, 243, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1 )` : `rgba(33, 150, 243, 1)`,
+  background: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
   fontFamily: `Roboto`,
   fontWeight: `500`,
@@ -1239,13 +1246,19 @@ const Button7: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-}));
+  '&:hover': {
+    color: is_dark_theme ? `rgba(228, 245, 255, 1 )` : `rgba(33, 150, 243, 1)`,
+    background: is_dark_theme
+      ? `rgba(0, 52, 92, 1 )`
+      : `rgba(255, 255, 255, 1)`,
+  },
+}))
 
-const Button8: any = styled(Button)(({ theme }: any) => ({
+const Button8: any = styled(Button)(({ is_dark_theme }: any) => ({
   width: `41px`,
   height: `32px`,
   margin: `0px 0px 0px 10px`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
   fontFamily: `Roboto`,
   fontWeight: `500`,
@@ -1254,8 +1267,7 @@ const Button8: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  
-}));
+}))
 
 const Description16: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1263,7 +1275,7 @@ const Description16: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `20px`,
   letterSpacing: `-0.3px`,
@@ -1273,13 +1285,14 @@ const Description16: any = styled('div')(({ theme }: any) => ({
   alignSelf: `stretch`,
   height: `33px`,
   margin: `16px 0px 0px 0px`,
-}));
+}))
 
-const Button9: any = styled(Button)(({ theme }: any) => ({
+const Button9: any = styled(Button)(({ is_dark_theme }: any) => ({
   height: `44px`,
   width: `215px`,
   margin: `30px 0px 0px 0px`,
-  color: `rgba(33, 150, 243, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1 )` : `rgba(33, 150, 243, 1)`,
+  background: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
   fontFamily: `Roboto`,
   fontWeight: `500`,
@@ -1288,7 +1301,13 @@ const Button9: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-}));
+  '&:hover': {
+    color: is_dark_theme ? `rgba(228, 245, 255, 1 )` : `rgba(33, 150, 243, 1)`,
+    background: is_dark_theme
+      ? `rgba(0, 52, 92, 1 )`
+      : `rgba(255, 255, 255, 1)`,
+  },
+}))
 
 const Services2: any = styled('div')({
   display: `flex`,
@@ -1301,7 +1320,7 @@ const Services2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `30px 0px 0px 0px`,
-});
+})
 
 const Q01Service2: any = styled('div')({
   display: `flex`,
@@ -1314,7 +1333,7 @@ const Q01Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
 const FluentCheckmark12Fil14: any = styled('div')({
   display: `flex`,
@@ -1329,23 +1348,33 @@ const FluentCheckmark12Fil14: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
-const Vector14: any = styled('img')({
+const Vector14: any = styled('img')(({ is_dark_theme }: any) => ({
   height: `12px`,
   width: `17px`,
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+  display: is_dark_theme ? `none` : `block`,
+}));
+const Vector144: any = styled('img')(({ is_dark_theme }: any) => ({
+  height: `12px`,
+  width: `17px`,
+  position: `absolute`,
+  left: `4px`,
+  top: `6px`,
+  display: is_dark_theme ? `block` : `none`,
+}));
 
-const Description17: any = styled('div')(({ theme }: any) => ({
+
+const Description17: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1354,7 +1383,7 @@ const Description17: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q02Service2: any = styled('div')({
   display: `flex`,
@@ -1367,7 +1396,7 @@ const Q02Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil15: any = styled('div')({
   display: `flex`,
@@ -1382,7 +1411,7 @@ const FluentCheckmark12Fil15: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector15: any = styled('img')({
   height: `12px`,
@@ -1390,15 +1419,15 @@ const Vector15: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description18: any = styled('div')(({ theme }: any) => ({
+const Description18: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1407,7 +1436,7 @@ const Description18: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q03Service2: any = styled('div')({
   display: `flex`,
@@ -1420,7 +1449,7 @@ const Q03Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil16: any = styled('div')({
   display: `flex`,
@@ -1435,7 +1464,7 @@ const FluentCheckmark12Fil16: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector16: any = styled('img')({
   height: `12px`,
@@ -1443,15 +1472,15 @@ const Vector16: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description19: any = styled('div')(({ theme }: any) => ({
+const Description19: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1460,7 +1489,7 @@ const Description19: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q04Service2: any = styled('div')({
   display: `flex`,
@@ -1473,7 +1502,7 @@ const Q04Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil17: any = styled('div')({
   display: `flex`,
@@ -1488,7 +1517,7 @@ const FluentCheckmark12Fil17: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector17: any = styled('img')({
   height: `12px`,
@@ -1496,15 +1525,15 @@ const Vector17: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description20: any = styled('div')(({ theme }: any) => ({
+const Description20: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1513,7 +1542,7 @@ const Description20: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q05Service2: any = styled('div')({
   display: `flex`,
@@ -1526,7 +1555,7 @@ const Q05Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil18: any = styled('div')({
   display: `flex`,
@@ -1541,7 +1570,7 @@ const FluentCheckmark12Fil18: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector18: any = styled('img')({
   height: `12px`,
@@ -1549,15 +1578,15 @@ const Vector18: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description21: any = styled('div')(({ theme }: any) => ({
+const Description21: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(255, 255, 255, 1)`,
+  color: is_dark_theme ? `rgba(0, 52, 92, 1 )` : `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1566,7 +1595,7 @@ const Description21: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q06Service2: any = styled('div')({
   display: `flex`,
@@ -1579,7 +1608,7 @@ const Q06Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil19: any = styled('div')({
   display: `flex`,
@@ -1594,7 +1623,7 @@ const FluentCheckmark12Fil19: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector19: any = styled('img')({
   height: `12px`,
@@ -1602,7 +1631,7 @@ const Vector19: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description22: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1610,7 +1639,7 @@ const Description22: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1619,7 +1648,7 @@ const Description22: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q07Service2: any = styled('div')({
   display: `flex`,
@@ -1632,7 +1661,7 @@ const Q07Service2: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil20: any = styled('div')({
   display: `flex`,
@@ -1647,7 +1676,7 @@ const FluentCheckmark12Fil20: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector20: any = styled('img')({
   height: `12px`,
@@ -1655,7 +1684,7 @@ const Vector20: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
 const Description23: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1663,7 +1692,7 @@ const Description23: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(255, 255, 255, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1672,10 +1701,12 @@ const Description23: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
-const Pro: any = styled('div')(({ theme }: any) => ({
-  backgroundColor: `rgba(255, 255, 255, 1)`,
+const Pro: any = styled('div')(({ is_dark_theme }: any) => ({
+  backgroundColor: is_dark_theme
+    ? `rgba(0, 52, 92, 1)`
+    : `rgba(255, 255, 255, 1)`,
   boxShadow: `0px 4px 12px rgba(12, 68, 204, 0.1)`,
   borderRadius: `6px`,
   display: `flex`,
@@ -1689,7 +1720,7 @@ const Pro: any = styled('div')(({ theme }: any) => ({
   boxSizing: `border-box`,
   width: `255px`,
   height: `525px`,
-}));
+}))
 
 const TitlePrice3: any = styled('div')({
   display: `flex`,
@@ -1702,15 +1733,15 @@ const TitlePrice3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
-const Title3: any = styled('div')(({ theme }: any) => ({
+const Title3: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `16px`,
   letterSpacing: `-0.24px`,
@@ -1719,7 +1750,7 @@ const Title3: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   alignSelf: `stretch`,
   margin: `0px`,
-}));
+}))
 
 const PriceTaps3: any = styled('div')({
   display: `flex`,
@@ -1732,15 +1763,15 @@ const PriceTaps3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `16px 0px 0px 0px`,
-});
+})
 
-const Price3: any = styled('div')(({ theme }: any) => ({
+const Price3: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `22px`,
   letterSpacing: `-0.39px`,
@@ -1748,7 +1779,7 @@ const Price3: any = styled('div')(({ theme }: any) => ({
   lineHeight: `40px`,
   textTransform: `none`,
   // width: `123px`,
-}));
+}))
 
 const Taps3: any = styled('div')({
   display: `flex`,
@@ -1759,7 +1790,7 @@ const Taps3: any = styled('div')({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-});
+})
 
 const Button10: any = styled(Button)(({ theme }: any) => ({
   width: `41px`,
@@ -1774,14 +1805,14 @@ const Button10: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  backgroundColor:"#0097E6"
-}));
+  backgroundColor: '#407BFF',
+}))
 
-const Button11: any = styled(Button)(({ theme }: any) => ({
+const Button11: any = styled(Button)(({ is_dark_theme }: any) => ({
   width: `41px`,
   height: `32px`,
   margin: `0px 0px 0px 10px`,
-  color: `rgba(33, 150, 243, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(33, 150, 243, 1)`,
   fontStyle: `normal`,
   fontFamily: `Roboto`,
   fontWeight: `500`,
@@ -1790,8 +1821,7 @@ const Button11: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  
-}));
+}))
 
 const Description24: any = styled('div')(({ theme }: any) => ({
   textAlign: `left`,
@@ -1799,7 +1829,7 @@ const Description24: any = styled('div')(({ theme }: any) => ({
   fontSynthesis: `none`,
   color: `rgba(41, 45, 51, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Manrope`,
+  fontFamily: `Roboto`,
   fontWeight: `700`,
   fontSize: `20px`,
   letterSpacing: `-0.3px`,
@@ -1809,7 +1839,7 @@ const Description24: any = styled('div')(({ theme }: any) => ({
   alignSelf: `stretch`,
   height: `33px`,
   margin: `16px 0px 0px 0px`,
-}));
+}))
 
 const Button12: any = styled(Button)(({ theme }: any) => ({
   height: `44px`,
@@ -1824,8 +1854,8 @@ const Button12: any = styled(Button)(({ theme }: any) => ({
   textDecoration: `none`,
   lineHeight: `26px`,
   textTransform: `uppercase`,
-  backgroundColor:"#0097E6"
-}));
+  backgroundColor: '#407BFF',
+}))
 
 const Services3: any = styled('div')({
   display: `flex`,
@@ -1838,7 +1868,7 @@ const Services3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `30px 0px 0px 0px`,
-});
+})
 
 const Q01Service3: any = styled('div')({
   display: `flex`,
@@ -1851,7 +1881,7 @@ const Q01Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `0px`,
-});
+})
 
 const FluentCheckmark12Fil21: any = styled('div')({
   display: `flex`,
@@ -1866,7 +1896,7 @@ const FluentCheckmark12Fil21: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector21: any = styled('img')({
   height: `12px`,
@@ -1874,15 +1904,15 @@ const Vector21: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description25: any = styled('div')(({ theme }: any) => ({
+const Description25: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1891,7 +1921,7 @@ const Description25: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q02Service3: any = styled('div')({
   display: `flex`,
@@ -1904,7 +1934,7 @@ const Q02Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil22: any = styled('div')({
   display: `flex`,
@@ -1919,7 +1949,7 @@ const FluentCheckmark12Fil22: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector22: any = styled('img')({
   height: `12px`,
@@ -1927,15 +1957,15 @@ const Vector22: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description26: any = styled('div')(({ theme }: any) => ({
+const Description26: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1944,7 +1974,7 @@ const Description26: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q03Service3: any = styled('div')({
   display: `flex`,
@@ -1957,7 +1987,7 @@ const Q03Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil23: any = styled('div')({
   display: `flex`,
@@ -1972,7 +2002,7 @@ const FluentCheckmark12Fil23: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector23: any = styled('img')({
   height: `12px`,
@@ -1980,15 +2010,15 @@ const Vector23: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description27: any = styled('div')(({ theme }: any) => ({
+const Description27: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -1997,7 +2027,7 @@ const Description27: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q04Service3: any = styled('div')({
   display: `flex`,
@@ -2010,7 +2040,7 @@ const Q04Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil24: any = styled('div')({
   display: `flex`,
@@ -2025,7 +2055,7 @@ const FluentCheckmark12Fil24: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector24: any = styled('img')({
   height: `12px`,
@@ -2033,15 +2063,15 @@ const Vector24: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description28: any = styled('div')(({ theme }: any) => ({
+const Description28: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -2050,7 +2080,7 @@ const Description28: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q05Service3: any = styled('div')({
   display: `flex`,
@@ -2063,7 +2093,7 @@ const Q05Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil25: any = styled('div')({
   display: `flex`,
@@ -2078,7 +2108,7 @@ const FluentCheckmark12Fil25: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector25: any = styled('img')({
   height: `12px`,
@@ -2086,15 +2116,15 @@ const Vector25: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description29: any = styled('div')(({ theme }: any) => ({
+const Description29: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -2103,7 +2133,7 @@ const Description29: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q06Service3: any = styled('div')({
   display: `flex`,
@@ -2116,7 +2146,7 @@ const Q06Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil26: any = styled('div')({
   display: `flex`,
@@ -2131,7 +2161,7 @@ const FluentCheckmark12Fil26: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector26: any = styled('img')({
   height: `12px`,
@@ -2139,15 +2169,15 @@ const Vector26: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description30: any = styled('div')(({ theme }: any) => ({
+const Description30: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -2156,7 +2186,7 @@ const Description30: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 const Q07Service3: any = styled('div')({
   display: `flex`,
@@ -2169,7 +2199,7 @@ const Q07Service3: any = styled('div')({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `15px 0px 0px 0px`,
-});
+})
 
 const FluentCheckmark12Fil27: any = styled('div')({
   display: `flex`,
@@ -2184,7 +2214,7 @@ const FluentCheckmark12Fil27: any = styled('div')({
   height: `25px`,
   margin: `0px`,
   overflow: `hidden`,
-});
+})
 
 const Vector27: any = styled('img')({
   height: `12px`,
@@ -2192,15 +2222,15 @@ const Vector27: any = styled('img')({
   position: `absolute`,
   left: `4px`,
   top: `6px`,
-});
+})
 
-const Description31: any = styled('div')(({ theme }: any) => ({
+const Description31: any = styled('div')(({ is_dark_theme }: any) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(37, 38, 45, 1)`,
+  color: is_dark_theme ? `rgba(228, 245, 255, 1)` : `rgba(37, 38, 45, 1)`,
   fontStyle: `normal`,
-  fontFamily: `Open Sans`,
+  fontFamily: `Roboto`,
   fontWeight: `400`,
   fontSize: `14px`,
   letterSpacing: `-0.21px`,
@@ -2209,22 +2239,25 @@ const Description31: any = styled('div')(({ theme }: any) => ({
   textTransform: `none`,
   flexGrow: `1`,
   margin: `0px 0px 0px 7px`,
-}));
+}))
 
 function Pricing(props: PricingProps): JSX.Element {
+  const { lang, setLang, is_dark_theme, is_logged_in, setLogin } = useContext(
+    AppContext,
+  )
   return (
-    <Pricing1 className={props.className}>
-      
+    <Pricing1 is_dark_theme={is_dark_theme} className={props.className}>
       <PricingContent>
-        <H2Title>{`Pricing`}</H2Title>
+        <H2Title is_dark_theme={is_dark_theme}>{`Pricing`}</H2Title>
         <PricingCards>
-          <FreeTrial>
+          <FreeTrial is_dark_theme={is_dark_theme}>
             <TitlePrice>
-              <Title>{`Free trial`}</Title>
+              <Title is_dark_theme={is_dark_theme}>{`Free trial`}</Title>
               <PriceTaps>
-                <Price>{`$00`}</Price>
+                <Price is_dark_theme={is_dark_theme}>{`$00`}</Price>
                 <Taps>
                   <Button1
+                   is_dark_theme={is_dark_theme ? "true" : undefined}
                     size={'small'}
                     color={'primary'}
                     disabled={false}
@@ -2233,6 +2266,7 @@ function Pricing(props: PricingProps): JSX.Element {
                     {'Mo'}
                   </Button1>
                   <Button2
+                    is_dark_theme={is_dark_theme ? "true" : undefined}
                     size={'large'}
                     color={'primary'}
                     disabled={false}
@@ -2243,7 +2277,9 @@ function Pricing(props: PricingProps): JSX.Element {
                 </Taps>
               </PriceTaps>
               {false && (
-                <Description>{`Perfect plan for starters`}</Description>
+                <Description
+                  is_dark_theme={is_dark_theme}
+                >{`Perfect plan for starters`}</Description>
               )}
             </TitlePrice>
             <Button3
@@ -2251,6 +2287,7 @@ function Pricing(props: PricingProps): JSX.Element {
               color={'primary'}
               disabled={false}
               variant={'contained'}
+              
             >
               {'Choose plan'}
             </Button3>
@@ -2259,13 +2296,17 @@ function Pricing(props: PricingProps): JSX.Element {
                 <FluentCheckmark12Fil>
                   <Vector src={VectorImage} loading="lazy" alt={'Vector'} />
                 </FluentCheckmark12Fil>
-                <Description1>{`For small teams – 5 users`}</Description1>
+                <Description1
+                  is_dark_theme={is_dark_theme}
+                >{`For small teams – 5 users`}</Description1>
               </Q01Service>
               <Q02Service>
                 <FluentCheckmark12Fil1>
                   <Vector1 src={VectorImage} loading="lazy" alt={'Vector'} />
                 </FluentCheckmark12Fil1>
-                <Description2>{`Community support`}</Description2>
+                <Description2
+                  is_dark_theme={is_dark_theme}
+                >{`Community support`}</Description2>
               </Q02Service>
               {false && (
                 <Q03Service>
@@ -2309,13 +2350,14 @@ function Pricing(props: PricingProps): JSX.Element {
               )}
             </Services>
           </FreeTrial>
-          <Lite>
+          <Lite is_dark_theme={is_dark_theme}>
             <TitlePrice1>
-              <Title1>{`Lite`}</Title1>
+              <Title1 is_dark_theme={is_dark_theme}>{`Lite`}</Title1>
               <PriceTaps1>
-                <Price1>{`$99`}</Price1>
+                <Price1 is_dark_theme={is_dark_theme}>{`$99`}</Price1>
                 <Taps1>
                   <Button4
+                    is_dark_theme={is_dark_theme ? "true" : undefined}
                     size={'large'}
                     color={'primary'}
                     disabled={false}
@@ -2324,6 +2366,7 @@ function Pricing(props: PricingProps): JSX.Element {
                     {'Mo'}
                   </Button4>
                   <Button5
+                    is_dark_theme={is_dark_theme ? "true" : undefined}
                     size={'large'}
                     color={'primary'}
                     disabled={false}
@@ -2334,10 +2377,13 @@ function Pricing(props: PricingProps): JSX.Element {
                 </Taps1>
               </PriceTaps1>
               {false && (
-                <Description8>{`Perfect plan for starters`}</Description8>
+                <Description8
+                  is_dark_theme={is_dark_theme}
+                >{`Perfect plan for starters`}</Description8>
               )}
             </TitlePrice1>
             <Button6
+            is_dark_theme={is_dark_theme ? "true" : undefined}
               size={'large'}
               color={'primary'}
               disabled={false}
@@ -2350,19 +2396,25 @@ function Pricing(props: PricingProps): JSX.Element {
                 <FluentCheckmark12Fil7>
                   <Vector7 src={VectorImage} loading="lazy" alt={'Vector'} />
                 </FluentCheckmark12Fil7>
-                <Description9>{`For small teams – 15 users`}</Description9>
+                <Description9
+                  is_dark_theme={is_dark_theme}
+                >{`For small teams – 15 users`}</Description9>
               </Q01Service1>
               <Q02Service1>
                 <FluentCheckmark12Fil8>
                   <Vector8 src={VectorImage} loading="lazy" alt={'Vector'} />
                 </FluentCheckmark12Fil8>
-                <Description10>{`Individual support`}</Description10>
+                <Description10
+                  is_dark_theme={is_dark_theme}
+                >{`Individual support`}</Description10>
               </Q02Service1>
               <Q03Service1>
                 <FluentCheckmark12Fil9>
                   <Vector9 src={VectorImage} loading="lazy" alt={'Vector'} />
                 </FluentCheckmark12Fil9>
-                <Description11>{`Individual data – 60GB`}</Description11>
+                <Description11
+                  is_dark_theme={is_dark_theme}
+                >{`Individual data – 60GB`}</Description11>
               </Q03Service1>
               {false && (
                 <Q04Service1>
@@ -2414,13 +2466,14 @@ function Pricing(props: PricingProps): JSX.Element {
               )}
             </Services1>
           </Lite>
-          <Basic>
+          <Basic is_dark_theme={is_dark_theme}>
             <TitlePrice2>
-              <Title2>{`Basic`}</Title2>
+              <Title2 is_dark_theme={is_dark_theme}>{`Basic`}</Title2>
               <PriceTaps2>
-                <Price2>{`$300`}</Price2>
+                <Price2 is_dark_theme={is_dark_theme}>{`$300`}</Price2>
                 <Taps2>
                   <Button7
+                   is_dark_theme={is_dark_theme ? "true" : undefined}
                     size={'large'}
                     color={'inherit'}
                     disabled={false}
@@ -2429,6 +2482,7 @@ function Pricing(props: PricingProps): JSX.Element {
                     {'Mo'}
                   </Button7>
                   <Button8
+                   is_dark_theme={is_dark_theme ? "true" : undefined}
                     size={'large'}
                     color={'inherit'}
                     disabled={false}
@@ -2443,6 +2497,7 @@ function Pricing(props: PricingProps): JSX.Element {
               )}
             </TitlePrice2>
             <Button9
+             is_dark_theme={is_dark_theme ? "true" : undefined}
               size={'large'}
               color={'inherit'}
               disabled={false}
@@ -2453,27 +2508,39 @@ function Pricing(props: PricingProps): JSX.Element {
             <Services2>
               <Q01Service2>
                 <FluentCheckmark12Fil14>
-                  <Vector14 src={Vector3Image} loading="lazy" alt={'Vector'} />
+                 <Vector14 src={Vector3Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
+                 <Vector144 src={Vector33Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
                 </FluentCheckmark12Fil14>
-                <Description17>{`For big teams – 30 users`}</Description17>
+                <Description17
+                  is_dark_theme={is_dark_theme}
+                >{`For big teams – 30 users`}</Description17>
               </Q01Service2>
               <Q02Service2>
                 <FluentCheckmark12Fil15>
-                  <Vector15 src={Vector3Image} loading="lazy" alt={'Vector'} />
+                <Vector14 src={Vector3Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
+                 <Vector144 src={Vector33Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
                 </FluentCheckmark12Fil15>
-                <Description18>{`Individual support`}</Description18>
+                <Description18
+                  is_dark_theme={is_dark_theme}
+                >{`Individual support`}</Description18>
               </Q02Service2>
               <Q03Service2>
                 <FluentCheckmark12Fil16>
-                  <Vector16 src={Vector3Image} loading="lazy" alt={'Vector'} />
+                <Vector14 src={Vector3Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
+                 <Vector144 src={Vector33Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
                 </FluentCheckmark12Fil16>
-                <Description19>{`Individual data – 120GB`}</Description19>
+                <Description19
+                  is_dark_theme={is_dark_theme}
+                >{`Individual data – 120GB`}</Description19>
               </Q03Service2>
               <Q04Service2>
                 <FluentCheckmark12Fil17>
-                  <Vector17 src={Vector3Image} loading="lazy" alt={'Vector'} />
+                <Vector14 src={Vector3Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
+                 <Vector144 src={Vector33Image} loading="lazy" alt="Vector" is_dark_theme={is_dark_theme} />
                 </FluentCheckmark12Fil17>
-                <Description20>{`Advanced permissions`}</Description20>
+                <Description20
+                  is_dark_theme={is_dark_theme}
+                >{`Advanced permissions`}</Description20>
               </Q04Service2>
               {false && (
                 <Q05Service2>
@@ -2513,91 +2580,106 @@ function Pricing(props: PricingProps): JSX.Element {
               )}
             </Services2>
           </Basic>
-          <Pro>
+          <Pro is_dark_theme={is_dark_theme}>
             <TitlePrice3>
-              <Title3>{`For enterprises`}</Title3>
+              <Title3 is_dark_theme={is_dark_theme}>{`For enterprises`}</Title3>
               <PriceTaps3>
-                <Price3>{`Custom`}</Price3>
-              <Taps3 sx={{ padding: 1 }}>
-                <Button10
-                  size={'large'}
-                  color={'primary'}
-                  disabled={false}
-                  variant={'contained'}
-                >
-                  {'Mo'}
-                </Button10>
-                <Button11
-                  size={'large'}
-                  color={'primary'}
-                  disabled={false}
-                  variant={'outlined'}
-                >
-                  {'Yr'}
-                </Button11>
-              </Taps3>
-            </PriceTaps3>
-            {false && (
-              <Description24>{`Perfect plan for starters`}</Description24>
-            )}
-          </TitlePrice3>
-          <Button12
-            size={'large'}
-            color={'primary'}
-            disabled={false}
-            variant={'contained'}
-          >
-            {'Choose plan'}
-          </Button12>
-          <Services3>
-            <Q01Service3>
-              <FluentCheckmark12Fil21>
-                <Vector21 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil21>
-              <Description25>{`Unlimited team members`}</Description25>
-            </Q01Service3>
-            <Q02Service3>
-              <FluentCheckmark12Fil22>
-                <Vector22 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil22>
-              <Description26>{`Individual support`}</Description26>
-            </Q02Service3>
-            <Q03Service3>
-              <FluentCheckmark12Fil23>
-                <Vector23 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil23>
-              <Description27>{`Unlimited Individual data`}</Description27>
-            </Q03Service3>
-            <Q04Service3>
-              <FluentCheckmark12Fil24>
-                <Vector24 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil24>
-              <Description28>{`Advanced permissions`}</Description28>
-            </Q04Service3>
-            <Q05Service3>
-              <FluentCheckmark12Fil25>
-                <Vector25 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil25>
-              <Description29>{`Data history`}</Description29>
-            </Q05Service3>
-            <Q06Service3>
-              <FluentCheckmark12Fil26>
-                <Vector26 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil26>
-              <Description30>{`Audit log`}</Description30>
-            </Q06Service3>
-            <Q07Service3>
-              <FluentCheckmark12Fil27>
-                <Vector27 src={VectorImage} loading="lazy" alt={'Vector'} />
-              </FluentCheckmark12Fil27>
-              <Description31>{`All functions included`}</Description31>
-            </Q07Service3>
-          </Services3>
-        </Pro>
-      </PricingCards>
-    </PricingContent>
-    </Pricing1 >
-  );
+                <Price3 is_dark_theme={is_dark_theme}>{`Custom`}</Price3>
+                <Taps3 sx={{ padding: 1 }}>
+                  <Button10
+                    size={'large'}
+                    color={'primary'}
+                    disabled={false}
+                    variant={'contained'}
+                  >
+                    {'Mo'}
+                  </Button10>
+                  <Button11
+                   is_dark_theme={is_dark_theme ? "true" : undefined}
+                    size={'large'}
+                    color={'primary'}
+                    disabled={false}
+                    variant={'outlined'}
+                  >
+                    {'Yr'}
+                  </Button11>
+                </Taps3>
+              </PriceTaps3>
+              {false && (
+                <Description24>{`Perfect plan for starters`}</Description24>
+              )}
+            </TitlePrice3>
+            <Button12
+              size={'large'}
+              color={'primary'}
+              disabled={false}
+              variant={'contained'}
+            >
+              {'Choose plan'}
+            </Button12>
+            <Services3>
+              <Q01Service3>
+                <FluentCheckmark12Fil21>
+                  <Vector21 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil21>
+                <Description25
+                  is_dark_theme={is_dark_theme}
+                >{`Unlimited team members`}</Description25>
+              </Q01Service3>
+              <Q02Service3>
+                <FluentCheckmark12Fil22>
+                  <Vector22 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil22>
+                <Description26
+                  is_dark_theme={is_dark_theme}
+                >{`Individual support`}</Description26>
+              </Q02Service3>
+              <Q03Service3>
+                <FluentCheckmark12Fil23>
+                  <Vector23 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil23>
+                <Description27
+                  is_dark_theme={is_dark_theme}
+                >{`Unlimited Individual data`}</Description27>
+              </Q03Service3>
+              <Q04Service3>
+                <FluentCheckmark12Fil24>
+                  <Vector24 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil24>
+                <Description28
+                  is_dark_theme={is_dark_theme}
+                >{`Advanced permissions`}</Description28>
+              </Q04Service3>
+              <Q05Service3>
+                <FluentCheckmark12Fil25>
+                  <Vector25 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil25>
+                <Description29
+                  is_dark_theme={is_dark_theme}
+                >{`Data history`}</Description29>
+              </Q05Service3>
+              <Q06Service3>
+                <FluentCheckmark12Fil26>
+                  <Vector26 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil26>
+                <Description30
+                  is_dark_theme={is_dark_theme}
+                >{`Audit log`}</Description30>
+              </Q06Service3>
+              <Q07Service3>
+                <FluentCheckmark12Fil27>
+                  <Vector27 src={VectorImage} loading="lazy" alt={'Vector'} />
+                </FluentCheckmark12Fil27>
+                <Description31
+                  is_dark_theme={is_dark_theme}
+                >{`All functions included`}</Description31>
+              </Q07Service3>
+            </Services3>
+          </Pro>
+        </PricingCards>
+      </PricingContent>
+    </Pricing1>
+  )
 }
 
-export default Pricing;
+export default Pricing
